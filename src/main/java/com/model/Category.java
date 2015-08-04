@@ -1,6 +1,13 @@
 package com.model;
 
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -9,14 +16,18 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "category")
-public class Category {
+public class Category implements Serializable{
     @Id
     @Column(name ="id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="category_id_seq")
+    @SequenceGenerator(name="category_id_seq", sequenceName="category_id_seq", allocationSize=1)
     private Integer id;
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    private Set<Item> itemSet = new HashSet<Item>(0);
 
 
     public String getName() {
@@ -31,11 +42,24 @@ public class Category {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+    public Set<Item> getItemSet() {
 
+        return itemSet;
+    }
 
+    public void setItemSet(Set<Item> itemSet) {
+        this.itemSet = itemSet;
+    }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
+    }
 }

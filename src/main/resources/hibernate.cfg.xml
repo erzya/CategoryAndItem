@@ -6,5 +6,6 @@
 <hibernate-configuration>
     <session-factory>
         <mapping class="com.model.Category" />
+        <mapping class="com.model.Item" />
     </session-factory>
 </hibernate-configuration>

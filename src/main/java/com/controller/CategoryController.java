@@ -1,21 +1,19 @@
 package com.controller;
 
 
-import com.dao.CategoryDao;
 import com.model.Category;
 import com.service.CategoryService;
 
+import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * Created by erzyasd on 01.08.15.
@@ -25,64 +23,60 @@ import java.util.Map;
 public class CategoryController {
 
 
-    private CategoryDao categoryDao;
+    private CategoryService categoryService;
+
     @Autowired
-    public CategoryController(CategoryDao categoryDao){
-        this.categoryDao = categoryDao;
+    public CategoryController(CategoryService categoryService){
+        this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = "/take/{categoryId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/takeCategory/{categoryId}", method = RequestMethod.GET)
     public String getCategory(@PathVariable("categoryId") Integer categoryId, Model model){
-        Category category = categoryDao.getCategory(categoryId);
+        Category category = categoryService.getCategory(categoryId);
         model.addAttribute("category", category);
         return "categ";
     }
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String listCategory(Model model){
+    @RequestMapping(value = "/categoryList",method = RequestMethod.GET)
+    public @ResponseBody
+    List listCategories(){
+        List<Category> category = this.categoryService.listCategory();
 
-        List<Category> category = this.categoryDao.listCategory();
-        model.addAttribute("categories", category);
-        return "index";
+        return category;
     }
 
-/*    @RequestMapping("/")
-    public String home(){
-        return "redirect:/index";
+
+
+
+    @RequestMapping(value = "/addCategory", method = RequestMethod.POST)
+    public String addCategory(@ModelAttribute("category")Category category){
+        if(category.getId()==null){
+            categoryService.addCategory(category);
+        }else {
+            categoryService.updateCategoty(category);
+        }
+        return "redirect:/";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addCategory(
-            @ModelAttribute("category")
-            Category category){
-        categoryService.addCategory(category);
-
-        return "redirect:/index";
+    @RequestMapping(value = "/addCategory", method = RequestMethod.GET)
+    public String addCategory(Model model){
+        model.addAttribute("category", new Category());
+        return "addCategory";
     }
 
-    @RequestMapping(value = "/delete/{categoryId}")
-    public String addCategory(@PathVariable("categoryId") Integer categoryId){
-
+    @RequestMapping(value = "/deleteCategory/{categoryId}")
+    public String deleteCategory(@PathVariable("categoryId") Integer categoryId){
         categoryService.deleteCategory(categoryId);
-
-        return "redirect:/index";
+        return "redirect:/";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateCategory", method = RequestMethod.POST)
     public String updateCategory(@ModelAttribute("category") Category category){
         if(category.getId() > 0){
 
             categoryService.updateCategoty(category);
 
         }
-
-
-        return "redirect:/index";
-    }*/
-
-
-
-
-
-
+        return "index";
+    }
 }

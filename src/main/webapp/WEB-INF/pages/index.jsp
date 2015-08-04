@@ -20,16 +20,48 @@
         <tr>
           <th>Id</th>
           <th>Name</th>
+          <%--<th>Edit</th>--%>
+          <th>Delete</th>
+
         </tr>
         <c:forEach items="${categories}" var="categoryk">
           <tr>
             <td><c:out value='${categoryk.id}' default="2"/></td>
             <td><c:out value='${categoryk.name}' default="neme"/></td>
+            <%--<td><a href="/update/">Edit</a> </td>--%>
+            <td><a href="/deleteCategory/${categoryk.id}">Delete</a> </td>
           </tr>
         </c:forEach>
       </table>
     </c:if>
   </div>
+<a href="addCategory">Add Category</a>
+
+  <div>
+    <h1>Item</h1>
+    <c:if test="${!empty items}">
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Category</th>
+            <%--<th>Edit</th>--%>
+          <th>Delete</th>
+
+        </tr>
+        <c:forEach items="${items}" var="item">
+          <tr>
+            <td><c:out value='${item.id}'/></td>
+            <td><c:out value='${item.name}'/></td>
+            <td><c:out value="${item.category.name}"/> </td>
+              <%--<td><a href="/update/">Edit</a> </td>--%>
+            <td><a href="/deleteItem/${item.id}">Delete</a> </td>
+          </tr>
+        </c:forEach>
+      </table>
+    </c:if>
+  </div>
+  <a href="addItem">Add Item</a>
 
 </body>
 </html>
