@@ -45,7 +45,12 @@ public class CategoryController {
         return category;
     }
 
-
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String listAll(Model model){
+        List<Category> category = this.categoryService.listCategory();
+        model.addAttribute("categories", category);
+        return "index";
+    }
 
 
     @RequestMapping(value = "/addCategory", method = RequestMethod.POST)
