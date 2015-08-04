@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -28,12 +29,27 @@ public class HomeController {
         this.itemService = itemService;
     }
 
-   /* @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String listAll(Model model){
+//    @RequestMapping(value = "/",method = RequestMethod.GET)
+//    public String listAll(Model model){
+//        List<Category> category = this.categoryService.listCategory();
+//        List<Item> item = this.itemService.listItem();
+//        model.addAttribute("items", item);
+//        model.addAttribute("categories", category);
+//        return "index";
+//    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView getLists() {
+
         List<Category> category = this.categoryService.listCategory();
         List<Item> item = this.itemService.listItem();
-        model.addAttribute("items", item);
-        model.addAttribute("categories", category);
-        return "index";
-    }*/
+
+        //return back to index.jsp
+        ModelAndView model = new ModelAndView("index");
+        model.addObject("categories", category);
+        model.addObject("items", item);
+
+        return model;
+
+    }
 }

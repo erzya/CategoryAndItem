@@ -36,21 +36,23 @@ public class CategoryController {
         model.addAttribute("category", category);
         return "categ";
     }
+ /*   @RequestMapping(value = "/categoryList", method = RequestMethod.GET)
+    public ModelAndView getCategories() {
 
-    @RequestMapping(value = "/categoryList",method = RequestMethod.GET)
-    public @ResponseBody
-    List listCategories(){
         List<Category> category = this.categoryService.listCategory();
+        ModelAndView model = new ModelAndView();
+        model.addObject("categories", category);
 
-        return category;
-    }
+        return model;
+    }*/
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+/*    @RequestMapping(value = "/categoryList",method = RequestMethod.GET)
     public String listAll(Model model){
         List<Category> category = this.categoryService.listCategory();
-        model.addAttribute("categories", category);
-        return "index";
-    }
+        model.addAttribute("categorList", category);
+        System.out.println("TEEEEST" + category);
+        return "addItem";
+    }*/
 
 
     @RequestMapping(value = "/addCategory", method = RequestMethod.POST)

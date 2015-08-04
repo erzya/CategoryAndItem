@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="rich" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -17,7 +17,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="json-jquery.js" type="text/javascript"></script>
 
-  <script>
+  <%--<script>
     $(document).ready(function() {
       var mydiv1 = document.getElementById("categList");
 
@@ -26,6 +26,7 @@
 
         $.getJSON('/categoryList', function(data) {
           console.log("t1 "+ data);
+          console.log(data.headlines);
           $.each(data, function (index, obj) {
 
             console.log(obj.id + " tesst "+ obj.name + index);
@@ -38,9 +39,11 @@
       });
 
     });
-  </script>
+  </script>--%>
 </head>
 <body>
+
+
 <h1>Add Item</h1>
 <form:form method="post" action="addItem" commandName="item">
   <table>
@@ -51,9 +54,16 @@
     <tr>
       <td><form:label path="category">Category</form:label></td>
       <td><form:input path="name" id ="categoryList"/>
-        <select id="categList">
 
-        </select>
+
+<%--    <tr>
+
+            <td><c:out value='${category.itemSet}' default="neme"/></td>
+
+    </tr>--%>
+
+
+
       </td>
 
     </tr>

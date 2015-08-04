@@ -5,10 +5,7 @@ import com.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +36,8 @@ public class ItemController {
     return "index";
     }*/
 
+
+
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
     public String addItem(@ModelAttribute("item")Item item){
         if(item.getId()==null){
@@ -46,7 +45,7 @@ public class ItemController {
         }else {
             itemService.updateItem(item);
         }
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/addItem", method = RequestMethod.GET)
