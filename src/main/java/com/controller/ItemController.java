@@ -40,6 +40,7 @@ public class ItemController {
 
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
     public String addItem(@ModelAttribute("item")Item item){
+
         if(item.getId()==null){
             itemService.addItem(item);
         }else {

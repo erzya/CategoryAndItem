@@ -1,3 +1,4 @@
+<%@ page import="com.model.Item" %>
 <%--
   Created by IntelliJ IDEA.
   User: erzyasd
@@ -16,35 +17,12 @@
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="json-jquery.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-  <%--<script>
-    $(document).ready(function() {
-      var mydiv1 = document.getElementById("categList");
-
-      $('#categoryList').click(function(event) {
-        var $temp = this;
-
-        $.getJSON('/categoryList', function(data) {
-          console.log("t1 "+ data);
-          console.log(data.headlines);
-          $.each(data, function (index, obj) {
-
-            console.log(obj.id + " tesst "+ obj.name + index);
-//            var optionTag = document.createElement('option');
-//            optionTag.setAttribute('value',obj.id);
-//            optionTag.innerHTML = obj.name;
-//            mydiv1.appendChild(optionTag);
-          });
-        });
-      });
-
-    });
-  </script>--%>
 </head>
 <body>
-<c:import url="index.jsp"/>
-
-
 <h1>Add Item</h1>
 <form:form method="post" action="addItem" commandName="item">
   <table>
@@ -54,19 +32,14 @@
     </tr>
     <tr>
       <td><form:label path="category">Category</form:label></td>
-      <td><form:input path="category" id ="categoryList"/>
-        <a></a>
+      <td>
 
-
-<%--    <tr>
-
-            <td><c:out value='${category.itemSet}' default="neme"/></td>
-
-    </tr>--%>
-
-
-
-      </td>
+            <form:select path="category">
+                <c:forEach items="${categories}" var="categor">
+                    <form:option value="${categor.id}">${categor.id}</form:option>
+                </c:forEach>
+            </form:select>
+        </td>
 
     </tr>
     <tr>
@@ -75,5 +48,26 @@
   </table>
 </form:form>
 
+<%--<script type="text/javascript" language="javascript" src="${pageContext.request.contextPath}/jQuery.js" >
+
+    $(document).ready(function() {
+        $('#catSelect').click().switchValue();
+    });
+
+
+
+
+    $.fn.switchValue = function(options) {
+
+        var mydiv1 = document.getElementById("clasCat");
+        var $temp = this;
+        console.log($temp.value());
+
+        var tempVal = $temp.value();
+        console.log(tempVal);
+        mydiv1.set(tempVal);
+
+    };
+</script>--%>
 </body>
 </html>

@@ -48,10 +48,6 @@
 </head>
 
 
-<c:import url="addItem.jsp" var="myURL">
-  <c:param name="categyObjects" value="${categories}"/>
-  </c:import>
-
 <jsp:include page="/addCategory">
   <jsp:param value="${category}" name="category" />
 </jsp:include>
