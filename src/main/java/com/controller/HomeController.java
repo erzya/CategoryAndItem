@@ -46,10 +46,20 @@ public class HomeController {
 
         //return back to index.jsp
         ModelAndView model = new ModelAndView("index");
+
         model.addObject("categories", category);
         model.addObject("items", item);
 
         return model;
 
+    }
+
+//Bременное решение
+    @RequestMapping(value = "/addItem", method = RequestMethod.GET)
+    public String addItem(Model model){
+        List<Category> category = this.categoryService.listCategory();
+        model.addAttribute("categories", category);
+        model.addAttribute("item", new Item());
+        return "addItem";
     }
 }

@@ -48,11 +48,7 @@ public class ItemController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/addItem", method = RequestMethod.GET)
-    public String addItem(Model model){
-        model.addAttribute("item", new Item());
-        return "addItem";
-    }
+
 
     @RequestMapping(value = "/deleteItem/{itemId}")
     public String deleteItem(@PathVariable("itemId") Integer itemId){

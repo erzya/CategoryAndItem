@@ -20,19 +20,37 @@
         list-style:none;
         margin:0; padding:0;
         position: relative;
+
         }
     ul.cssMenu ul
     {
+      opacity: 1;
       display:none; /*initially menu item is hidden*/
       position: absolute; /*absolute positioning is important for menu to float*/
+      left: 110px;
+    }
+    #temp{
+      float: left;
+
     }
     ul.cssMenu li:hover > ul
     {
-    display:block;
+      cursor: pointer;
+    display:inline-block;
+      backface-visibility: hidden;
+      background-color: darkgray;
+      position: absolute;
+
+
+      opacity: 1;
     }
   </style>
 </head>
 
+
+<c:import url="addItem.jsp" var="myURL">
+  <c:param name="categyObjects" value="${categories}"/>
+  </c:import>
 
 <jsp:include page="/addCategory">
   <jsp:param value="${category}" name="category" />
@@ -56,9 +74,9 @@
               <td>
               <ul class="cssMenu">
                 <li>
-                  <a href="#">Items</a>
+                  <a>Items</a>
                   <ul>
-                    <li><a href="#">
+                    <li id = "temp"><a href="#">
                         <c:forEach items="${categoryk.itemSet}" var="itemSet">
                         <a>${itemSet.name}</a>
                         </c:forEach>

@@ -42,6 +42,7 @@
   </script>--%>
 </head>
 <body>
+<c:import url="index.jsp"/>
 
 
 <h1>Add Item</h1>
@@ -53,7 +54,8 @@
     </tr>
     <tr>
       <td><form:label path="category">Category</form:label></td>
-      <td><form:input path="name" id ="categoryList"/>
+      <td><form:input path="category" id ="categoryList"/>
+        <a></a>
 
 
 <%--    <tr>
