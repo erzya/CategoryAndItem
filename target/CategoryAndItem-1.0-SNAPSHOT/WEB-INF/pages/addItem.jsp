@@ -36,7 +36,7 @@
 
             <form:select path="category">
                 <c:forEach items="${categories}" var="categor">
-                    <form:option value="${categor.id}">${categor.id}</form:option>
+                    <form:option value="${categor}">${categor.name}</form:option>
                 </c:forEach>
             </form:select>
         </td>
