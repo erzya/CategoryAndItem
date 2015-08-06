@@ -17,14 +17,11 @@
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="json-jquery.js" type="text/javascript"></script>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 </head>
 <body>
 <h1>Add Item</h1>
-<form:form method="post" action="addItem" commandName="item">
+<form:form method="post" action="addItem" modelAttribute="item">
   <table>
     <tr>
       <td><form:label path="name">Name</form:label></td>
@@ -34,11 +31,12 @@
       <td><form:label path="category">Category</form:label></td>
       <td>
 
-            <form:select path="category">
+          <form:select path="category" id="category" items="${categories}" itemValue="id" itemLabel="name"/>
+<%--            <form:select path="category" id="category" multiple="true" >
                 <c:forEach items="${categories}" var="categor">
-                    <form:option value="${categor}">${categor.name}</form:option>
+                    <form:option value="${categor}" label="${categor.name}"></form:option>
                 </c:forEach>
-            </form:select>
+            </form:select>--%>
         </td>
 
     </tr>

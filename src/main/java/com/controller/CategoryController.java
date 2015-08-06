@@ -30,11 +30,19 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = "/takeCategory/{categoryId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/category/{categoryId}", method = RequestMethod.GET)
     public String getCategory(@PathVariable("categoryId") Integer categoryId, Model model){
         Category category = categoryService.getCategory(categoryId);
         model.addAttribute("category", category);
         return "categ";
+    }
+
+    @RequestMapping(value = "/categoryList", method = RequestMethod.GET)
+    public ModelAndView getListCategory() {
+        List<Category> category = this.categoryService.listCategory();
+        ModelAndView model = new ModelAndView("categoryList");
+        model.addObject("categories", category);
+        return model;
     }
 
 

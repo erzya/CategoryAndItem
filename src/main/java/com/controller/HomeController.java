@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by erzyasd on 03.08.15.
@@ -28,6 +31,10 @@ public class HomeController {
         this.categoryService = categoryService;
         this.itemService = itemService;
     }
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String listAll(Model model){
+        return "index";
+    }
 
 //    @RequestMapping(value = "/",method = RequestMethod.GET)
 //    public String listAll(Model model){
@@ -38,21 +45,21 @@ public class HomeController {
 //        return "index";
 //    }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getLists() {
-
-        List<Category> category = this.categoryService.listCategory();
-        List<Item> item = this.itemService.listItem();
-
-        //return back to index.jsp
-        ModelAndView model = new ModelAndView("index");
-
-        model.addObject("categories", category);
-        model.addObject("items", item);
-
-        return model;
-
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public ModelAndView getLists() {
+//
+//        List<Category> category = this.categoryService.listCategory();
+//        List<Item> item = this.itemService.listItem();
+//
+//        //return back to index.jsp
+//        ModelAndView model = new ModelAndView("index");
+//
+//        model.addObject("categories", category);
+//        model.addObject("items", item);
+//
+//        return model;
+//
+//    }
 
 //Bременное решение
     @RequestMapping(value = "/addItem", method = RequestMethod.GET)
@@ -62,4 +69,13 @@ public class HomeController {
         model.addAttribute("item", new Item());
         return "addItem";
     }
+
+ /*   @RequestMapping(value = "/addItem", method = RequestMethod.GET)
+    public ModelAndView addItem(HttpServletRequest request) {
+        Map<String, Object> model = new HashMap<String, Object>();
+        List<Category> category = this.categoryService.listCategory();
+        model.put("categories", category);
+        model.put("item", new Item());
+        return new ModelAndView("mapAddItem", model);
+    }*/
 }

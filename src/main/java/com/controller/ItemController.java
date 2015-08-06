@@ -1,11 +1,15 @@
 package com.controller;
 
+import com.model.Category;
 import com.model.Item;
 import com.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -29,20 +33,26 @@ public class ItemController {
         return "redirect:/index";
     }
 
-/*    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String listAll(Model model) {
+    @RequestMapping(value = "/itemList", method = RequestMethod.GET)
+    public ModelAndView getListItem() {
         List<Item> item = this.itemService.listItem();
-        model.addAttribute("items", item);
-    return "index";
-    }*/
-
-
+        ModelAndView model = new ModelAndView("itemList");
+        model.addObject("items", item);
+        return model;
+    }
 
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
-    public String addItem(@ModelAttribute("item")Item item){
+    public String addItem(@ModelAttribute("item")Item item, BindingResult result, ModelMap model, Category category){
 
+        System.out.println(item + "   tttttttttttttEEEEEEEEEEEE     ");
+        System.out.println( model.get("category"));
+
+        System.out.println(model + "   QQQQQQQQQQQQQQQQ QQQQQQQQQQQQ");
         if(item.getId()==null){
+
+
             itemService.addItem(item);
+
         }else {
             itemService.updateItem(item);
         }
