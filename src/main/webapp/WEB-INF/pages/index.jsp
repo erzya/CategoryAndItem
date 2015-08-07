@@ -22,10 +22,10 @@
 </head>
 
 <body>
-<div id = "inline">
+<span>
 <jsp:include page="/addCategory"></jsp:include>
   <jsp:include page="/addItem"/>
-</div>
+</span>
 <div id = "inline">
 <jsp:include page="/itemList"></jsp:include>
   </div>
