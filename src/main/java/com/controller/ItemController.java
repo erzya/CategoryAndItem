@@ -42,11 +42,10 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
-    public String addItem(@ModelAttribute("item")Item item, BindingResult result, ModelMap model, Category category){
+    public String addItem(@ModelAttribute("item")Item item, BindingResult result, ModelMap model){
 
         System.out.println(item + "   tttttttttttttEEEEEEEEEEEE     ");
-        System.out.println( model.get("category"));
-
+        System.out.println("!!!!!!!!!!!!! ");
         System.out.println(model + "   QQQQQQQQQQQQQQQQ QQQQQQQQQQQQ");
         if(item.getId()==null){
 

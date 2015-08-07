@@ -33,6 +33,15 @@ public class HomeController {
     }
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String listAll(Model model){
+/*        Category cat = new Category();
+        cat.setName("TEEEEEEST");
+        categoryService.addCategory(cat);
+
+        Item it = new Item();
+        it.setName("ITEM teeest");
+        it.setCategory(cat);
+
+        itemService.addItem(it);*/
         return "index";
     }
 
@@ -64,6 +73,7 @@ public class HomeController {
 //Bременное решение
     @RequestMapping(value = "/addItem", method = RequestMethod.GET)
     public String addItem(Model model){
+
         List<Category> category = this.categoryService.listCategory();
         model.addAttribute("categories", category);
         model.addAttribute("item", new Item());

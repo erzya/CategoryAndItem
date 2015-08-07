@@ -28,10 +28,10 @@
       <td><form:input path="name"/></td>
     </tr>
     <tr>
-      <td><form:label path="category">Category</form:label></td>
+      <td><form:label path="category.id">Category</form:label></td>
       <td>
 
-          <form:select path="category" id="category" items="${categories}" itemValue="id" itemLabel="name"/>
+          <form:select path="category.id" id="category" items="${categories}" itemValue="id" itemLabel="name"/>
 <%--            <form:select path="category" id="category" multiple="true" >
                 <c:forEach items="${categories}" var="categor">
                     <form:option value="${categor}" label="${categor.name}"></form:option>

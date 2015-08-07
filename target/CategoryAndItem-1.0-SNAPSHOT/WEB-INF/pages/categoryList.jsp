@@ -22,7 +22,6 @@
       opacity: 1;
       display:none; /*initially menu item is hidden*/
       position: absolute; /*absolute positioning is important for menu to float*/
-      left: 110px;
     }
     #temp{
       float: left;
@@ -42,8 +41,9 @@
 <div>
   <h1>Categories</h1>
   <c:if test="${!empty categories}">
-    <table>
-      <tr>
+    <table  border="1" bgcolor="black" width="600px">
+      <tr style="background-color: teal; color: white; text-align: center;"
+          height="40px">
         <th>Id</th>
         <th>Name</th>
         <th>Items</th>
@@ -51,7 +51,8 @@
 
       </tr>
       <c:forEach items="${categories}" var="categoryk">
-        <tr>
+        <tr style="background-color: white; color: black; text-align: center;"
+            height="30px">
           <td><c:out value='${categoryk.id}'/></td>
           <td><c:out value='${categoryk.name}'/>
           <td>
@@ -59,7 +60,7 @@
               <li>
                 <a>Items</a>
                 <ul>
-                  <li id = "temp"><a href="#">
+                  <li style="cursor: pointer" id = "temp"><a href="#">
                     <c:forEach items="${categoryk.itemSet}" var="itemSet">
                     <a>${itemSet.name}</a>
                     </c:forEach>

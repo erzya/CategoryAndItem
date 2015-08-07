@@ -17,15 +17,17 @@
   <div>
     <h1>Item</h1>
     <c:if test="${!empty items}">
-      <table>
-        <tr>
+      <table border="1" bgcolor="black" width="600px">
+        <tr style="background-color: teal; color: white; text-align: center;"
+            height="40px">
           <th>Id</th>
           <th>Name</th>
           <th>Category</th>
           <th>Delete</th>
         </tr>
         <c:forEach items="${items}" var="item">
-          <tr>
+          <tr style="background-color: white; color: black; text-align: center;"
+              height="30px">
             <td><c:out value='${item.id}'/></td>
             <td><c:out value='${item.name}'/></td>
             <td><c:out value="${item.category.name}"/> </td>
@@ -35,7 +37,6 @@
       </table>
     </c:if>
   </div>
-  <a href="addItem">Add Item</a>
 </div>
 
 </body>

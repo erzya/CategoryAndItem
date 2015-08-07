@@ -21,7 +21,11 @@
   </style>
 </head>
 
+<body>
+<div id = "inline">
 <jsp:include page="/addCategory"></jsp:include>
+  <jsp:include page="/addItem"/>
+</div>
 <div id = "inline">
 <jsp:include page="/itemList"></jsp:include>
   </div>
